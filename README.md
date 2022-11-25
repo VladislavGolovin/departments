@@ -7,13 +7,14 @@
     4. Curl либо Postman
 
 PostgreSQL можно получить несколькими способами: докер либо установить локально.
-    Докер: 
-        1. Перейти в папку с docker-compose.yml
-        2. В ней запустить docker-compose up
-        3. Узнать id контейнера с PostgreSQL
-        4. Создать в этом контейнере бд "pulkovo" при помощи команды: 
+    Докер:
+        1. Убедиться в наличии рабочего docker-окружения 
+        2. Перейти в папку с docker-compose.yml
+        3. В ней запустить docker-compose up
+        4. Узнать id контейнера с PostgreSQL
+        5. Создать в этом контейнере бд "pulkovo" при помощи команды: 
             sudo docker container exec $ContainerId su postgres -c "createdb -O postgres pulkovo"
-        5. Подключиться к БД при помощи любого удобного обозревателя БД (docker-compose up также развернёт еще контейнер с pgadmin4 на порте 9010. Пользователь: golovinvladislav@gmail.com, пароль: 1234)
+        6. Подключиться к БД при помощи любого удобного обозревателя БД (docker-compose up также развернёт еще контейнер с pgadmin4 на порте 9010. Пользователь: golovinvladislav@gmail.com, пароль: 1234)
     Локально:
         1. Убедиться что есть рабочая версия PostgreSQL и развёрнута на порт 5432
         2. Убедиться что есть пользователь "postgres" c паролем "postgres"
