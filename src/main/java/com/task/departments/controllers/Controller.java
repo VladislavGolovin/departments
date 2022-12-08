@@ -3,6 +3,8 @@ package com.task.departments.controllers;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,7 @@ public class Controller {
     
     private final DivisionRepository repo;
 
+    @Autowired
     public Controller(DivisionRepository repo) {
         this.repo = repo;
     }
@@ -84,7 +87,7 @@ public class Controller {
      */
     @DeleteMapping(value = "/divisions/delete/{id}")
     void deleteDivision(@PathVariable Long id) {
-        // Нужно найти по id запись и проверить не ялвеятся ли она чьим-то родителем
+        // Нужно найти по id запись и проверить не является ли она чьим-то родителем
         Division division = repo.findById(id).orElseThrow(() -> new DivisionNotFoundByIdException(id));
         List<Division> childDivisions = repo.findByParentId(division.getId());
         // Если запись не родительская, т.е. нет детей, то позволяем удалить
